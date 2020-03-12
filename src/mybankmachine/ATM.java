@@ -29,13 +29,18 @@ public class ATM {
 
     public boolean withdraw(double amount) {
         if (amount <= balance) {
+            balance -= amount;
             return true;
         }
         return false;
     }
     
     public double interest(double per, int days){
-        
+        if(per <= 0 || days <= 0){
+            return -1;
+        }
+        double percentAsDecimal = per/100;
+        balance = balance * Math.pow(1 + percentAsDecimal,(days/365));
         return balance;
     }
 
